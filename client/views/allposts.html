@@ -1,0 +1,60 @@
+<h1>Polo Posts</h1>
+<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset">
+      <button type="button" class="btn btn-default navbar-btn" ng-click="showForm = !showForm">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Post
+      </button>
+    </div>
+<div class="container-fluid">
+
+    <form ng-show="showForm" name="postForm" ng-submit="submitNew(newPost)" $novalidate>
+
+        <div class="form-group" ng-class="{ 'has-error' : postForm.name.$invalid && !userForm.username.$pristine ,'has-success' : postForm.name.$valid }">
+            <label class="control-label" for="name">Title:</label>
+            <input autofocus type="text" name="name" class="form-control" ng-model="post.title" ng-required="true" id="title" ng-minlength="3" ng-maxlength="12">
+            <p ng-show="postForm.title.$error.minlength" class="help-block">title is too short.</p>
+            <p ng-show="postForm.title.$error.maxlength" class="help-block">title is too long.</p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
+            <label class="control-label" for="author">By:</label>
+            <input type="text" name="author" class="form-control" ng-model="post.author" id="author" ng-minlength="3" ng-maxlength="12" ng-required="true">
+            <p ng-show="postForm.author.$error.minlength" class="help-block">author is too short.</p>
+            <p ng-show="postForm.author.$error.maxlength" class="help-block">author is too long.</p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : postForm.post.$invalid && !postForm.post.$pristine ,'has-success' : postForm.post.$valid }">
+            <label class="control-label" for="post"></label>
+            <input type="text" id="post" name="post" class="form-control" ng-required="true" ng-model="post.post">
+            <p ng-show="postForm.post.$invalid && !postForm.post.$pristine" class="help-block">Enter a valid post.</p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : postForm.image.$invalid && !postForm.image.$pristine ,'has-success' : postForm.image.$valid }">
+            <label class="control-label" for="image">Image</label>
+            <input type="url" id="image" name="image" class="form-control" ng-required="true" ng-model="post.image">
+            <p ng-show="postForm.image.$invalid && !postForm.image.$pristine" class="help-block">Enter a url.</p>
+        </div>
+
+        <input type="submit" ng-click="showForm=false" ng-disabled="newPostForm.$invalid">
+    </form>
+    <div ng-repeat="post in posts">
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset panel panel-default">
+            <div class="panel-body">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="image" ng-class="image" ng-src="{{post.image}}">
+                    </div>
+                    <div class="media-body">
+                        <a href="/#/onepost/{{post.id}}">
+                            <h2>{{post.title}}</h2></a>
+                        <br>
+                        <p><strong>By:</strong> {{post.author}}</p>
+                        <p><strong>Date:</strong> {{post.date}}</p>
+                        <p><strong>Votes:</strong> {{post.votes}}</p>
+                        <br>
+                        <p><strong>:</strong> {{post.post}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
