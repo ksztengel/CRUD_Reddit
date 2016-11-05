@@ -21,7 +21,6 @@ router.get('/:id', function(req, res) {
         })
 });
 router.post('/', (req, res, next) => {
-  console.log("post:",req.body);
     knex('posts')
         .insert(req.body)
         .then((post) => {
@@ -29,4 +28,15 @@ router.post('/', (req, res, next) => {
             res.json(post)
         })
 })
+
+router.delete('/:id', (req, res, next) => {
+    knex('posts')
+        .where('id', req.params.id)
+        .delete()
+        .then(() => {
+            //back to bucaneers
+            res.json('Post is Deleted!')
+        })
+})
+
 module.exports = router;

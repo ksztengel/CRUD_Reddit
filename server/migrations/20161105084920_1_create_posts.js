@@ -7,8 +7,7 @@ exports.up = function(knex, Promise) {
         table.string('author').notNullable().defaultTo('');
         table.string('post', 4000).notNullable().defaultTo('');
         table.string('image').notNullable();
-        table.dateTime('date');
-        table.integer('votes').notNullable();
+        table.integer('votes').defaultTo(0);
         table.timestamps(true, true);
     })
 }

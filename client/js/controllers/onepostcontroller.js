@@ -8,12 +8,12 @@ app.controller('OnePostController', function($scope, PoloService, $routeParams, 
 
     })
 
-    // $scope.someFunction = function(id) {
-    //     BucaneerService.delete(id).then(results => {
-    //         $location.url('/')
-    //
-    //     })
-    // }
+    $scope.someFunction = function(id) {
+        PoloService.delete(id).then(results => {
+            $location.url('/')
+    
+        })
+    }
     //
     // $scope.submitEdit = function() {
     //     const editBucaneer = $scope.oneBucaneer

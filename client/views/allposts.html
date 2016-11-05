@@ -13,13 +13,7 @@
             <p ng-show="postForm.title.$error.minlength" class="help-block">title is too short.</p>
             <p ng-show="postForm.title.$error.maxlength" class="help-block">title is too long.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : postForm.votes.$invalid && !userForm.votes.$pristine ,'has-success' : postForm.votes.$valid }">
-            <label class="control-label" for="title">Votes:</label>
-            <input autofocus type="text" name="votes" class="form-control" ng-model="post.votes" ng-required="true" id="votes" ng-minlength="1" ng-maxlength="12">
-            <p ng-show="postForm.votes.$error.minlength" class="help-block">votes is too short.</p>
-            <p ng-show="postForm.votes.$error.maxlength" class="help-block">votes is too long.</p>
-        </div>
-
+      
         <div class="form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
             <label class="control-label" for="author">By:</label>
             <input type="text" name="author" class="form-control" ng-model="post.author" id="author" ng-minlength="3" ng-maxlength="12" ng-required="true">
@@ -53,7 +47,7 @@
                             <h2>{{post.title}}</h2></a>
                         <br>
                         <p><strong>By:</strong> {{post.author}}</p>
-                        <p><strong>Date:</strong> {{post.date}}</p>
+                        <p><strong>Date:</strong> {{post.created_at}}</p>
                         <p><strong>Votes:</strong> {{post.votes}}</p>
                         <br>
                         <p><strong>Post</strong> {{post.post}}</p>

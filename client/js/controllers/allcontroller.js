@@ -1,5 +1,5 @@
 'use strict'
-app.controller('AllController', function($scope, PoloService) {
+app.controller('AllController', function($scope, PoloService, $location) {
 
 
     $scope.view = {}
@@ -14,7 +14,8 @@ app.controller('AllController', function($scope, PoloService) {
                 $scope.post = {},
                 $scope.postForm.$setPristine(),
                 $scope.newPost = {}
-                console.log($scope.post);
+                // $location.url('/')
+
         })
     }
 
