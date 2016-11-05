@@ -29,6 +29,16 @@ router.post('/', (req, res, next) => {
         })
 })
 
+router.put('/:id', (req, res, next) => {
+    knex('posts')
+        .where('id', req.params.id)
+        .update(req.body)
+        .then((post) => {
+            //send data to client
+            res.json(post)
+        })
+})
+
 router.delete('/:id', (req, res, next) => {
     knex('posts')
         .where('id', req.params.id)
