@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+.image{
+ height: auto;
+ width: 300px;
+
+}
