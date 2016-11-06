@@ -1,4 +1,4 @@
-var app = angular.module('reddit',['ngRoute'])
+var app = angular.module('reddit',['ngRoute', 'ngAnimate'])
 
 app.config(function($routeProvider) {
     $routeProvider

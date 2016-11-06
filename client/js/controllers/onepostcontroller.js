@@ -11,16 +11,15 @@ app.controller('OnePostController', function($scope, PoloService, $routeParams, 
     $scope.someFunction = function(id) {
         PoloService.delete(id).then(results => {
             $location.url('/')
-    
+
         })
     }
-    //
-    // $scope.submitEdit = function() {
-    //     const editBucaneer = $scope.oneBucaneer
-    //     BucaneerService.edit(editBucaneer).then(results => {
-    //         console.log('edit', $scope.editBucaneer);
-    //         $location.url('/')
-    //
-    //     })
-    // }
+
+    $scope.submitEdit = function() {
+        const editPost = $scope.onePost
+        PoloService.edit(editPost).then(results => {
+            $location.url('/')
+
+        })
+    }
 })

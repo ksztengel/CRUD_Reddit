@@ -10,8 +10,13 @@
                     <br>
                     <p><strong>by:</strong> {{onePost.author}}</p>
                     <br>
-                    <p><strong>Date:</strong> {{onePost.created_at}}</p>
-                    <p><strong>Votes:</strong> {{onePost.votes}}</p>
+                    <p><strong>Date:</strong> {{onePost.created_at | date}}</p>
+                    <div>
+                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                    <span><strong></strong> {{onePost.votes}}</span>
+                    <div>
+                      <br>
                     <p><strong>Post:</strong> {{onePost.post}}</p>
 
                     <a ng-click="showEditForm = !showEditForm">EDIT</a>

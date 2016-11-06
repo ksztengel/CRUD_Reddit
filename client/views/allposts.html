@@ -1,19 +1,16 @@
 <h1>Polo Posts</h1>
 <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset">
     </div>
-    <button type="button" class="btn btn-default navbar-btn" ng-click="showForm = !showForm">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Post
-    </button>
 <div class="container-fluid">
     <form ng-show="showForm" name="postForm" ng-submit="submitNew(newPost)" $novalidate>
-
         <div class="form-group" ng-class="{ 'has-error' : postForm.name.$invalid && !userForm.username.$pristine ,'has-success' : postForm.name.$valid }">
+          <br>
             <label class="control-label" for="title">Title:</label>
             <input autofocus type="text" name="title" class="form-control" ng-model="post.title" ng-required="true" id="title" ng-minlength="3" ng-maxlength="12">
             <p ng-show="postForm.title.$error.minlength" class="help-block">title is too short.</p>
             <p ng-show="postForm.title.$error.maxlength" class="help-block">title is too long.</p>
         </div>
-      
+
         <div class="form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
             <label class="control-label" for="author">By:</label>
             <input type="text" name="author" class="form-control" ng-model="post.author" id="author" ng-minlength="3" ng-maxlength="12" ng-required="true">
@@ -35,7 +32,7 @@
 
         <input type="submit" ng-click="showForm=false" ng-disabled="newPostForm.$invalid">
     </form>
-    <div ng-repeat="post in posts">
+    <div ng-repeat="post in posts | orderBy: sort | filter: searching">
         <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset panel panel-default">
             <div class="panel-body">
                 <div class="media">
@@ -47,8 +44,11 @@
                             <h2>{{post.title}}</h2></a>
                         <br>
                         <p><strong>By:</strong> {{post.author}}</p>
-                        <p><strong>Date:</strong> {{post.created_at}}</p>
-                        <p><strong>Votes:</strong> {{post.votes}}</p>
+                        <div><p><strong>Date:</strong> {{post.created_at | date}}</p>
+                        <a href="" ng-click="upVote(post)"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></a></span>
+                        <a href="" ng-click="downVote(post)"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></a></span>
+                        <span ng-class="{redVote: post.votes < 0, greenVote: post.votes >0, zero: post.votes == 0}">{{post.votes}}</span>
+                        <div>
                         <br>
                         <p><strong>Post</strong> {{post.post}}</p>
                     </div>

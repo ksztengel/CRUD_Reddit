@@ -10,15 +10,15 @@ app.service('PoloService', function($http) {
         },
 
         new: function(newPost) {
-          console.log(newPost);
+
             return $http.post('/api/allposts', newPost);
         },
-        //
-        // edit: function(editPost) {
-        //     var id = editPost.id
-        //     return $http.put(`/api/allposts/${id}`, editBucaneer);
-        // },
-        //
+
+        edit: function(editPost) {
+            var id = editPost.id
+            return $http.put(`/api/allposts/${id}`, editPost);
+        },
+
         delete: function(id) {
             return $http.delete(`/api/allposts/${id}`);
         }

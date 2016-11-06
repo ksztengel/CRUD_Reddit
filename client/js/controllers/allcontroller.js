@@ -1,6 +1,7 @@
 'use strict'
 app.controller('AllController', function($scope, PoloService, $location) {
 
+    // $scope.sort = '-votes'
 
     $scope.view = {}
     PoloService.all().then(posts => {
@@ -18,5 +19,19 @@ app.controller('AllController', function($scope, PoloService, $location) {
 
         })
     }
+
+    $scope.upVote = function(post) {
+        post.votes += 1
+        PoloService.edit(post, function(){})
+
+    }
+
+    $scope.downVote = function(post) {
+        post.votes -= 1
+        PoloService.edit(post, function(){})
+
+    }
+
+    $scope.search = ""
 
   })

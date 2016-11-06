@@ -12,3 +12,24 @@ a {
  width: 300px;
 
 }
+
+.greenVote {
+    color: green;
+    font-weight:bold;
+}
+.redVote {
+    color: red;
+    font-weight:bold;
+}
+
+.zero{
+    color: black;
+
+}
+.ng-enter {
+  animation: fadeInRight 1s;
+}
+
+.ng-leave {
+  animation: fadeOutRight 1s;
+}
