@@ -27,9 +27,9 @@ a {
 
 }
 .ng-enter {
-  animation: fadeInRight 1s;
+  animation: fadeInRight .015s;
 }
 
 .ng-leave {
-  animation: fadeOutRight 1s;
+  animation: fadeOutRight .015s;
 }

@@ -12,49 +12,64 @@
                     <br>
                     <p><strong>Date:</strong> {{onePost.created_at | date}}</p>
                     <div>
-                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-                    <span><strong></strong> {{onePost.votes}}</span>
-                    <div>
-                      <br>
-                    <p><strong>Post:</strong> {{onePost.post}}</p>
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                        <span><strong></strong> {{onePost.votes}}</span>
+                        <div>
+                            <br>
+                            <p><strong>Post:</strong> {{onePost.post}}</p>
 
-                    <a ng-click="showEditForm = !showEditForm">EDIT</a>
-                    <a ng-click="someFunction(onePost.id)">DELETE</a>
-
+                            <a ng-click="showEditForm = !showEditForm">EDIT</a>
+                            <a ng-click="someFunction(onePost.id)">DELETE</a>
+                            <div ng-repeat="comment in comments"><p> {{comment.comment}}</div>
                 </ul>
+                </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <form ng-show="showEditForm" name="editForm" ng-submit="submitEdit(onePost)" $novalidate>
+            <div class="container-fluid">
+                <form ng-show="showEditForm" name="editForm" ng-submit="submitEdit(onePost)" $novalidate>
 
-            <div class="form-group" ng-class="{ 'has-error' : editForm.title.$invalid && !editForm.title.$pristine ,'has-success' : editForm.title.$valid }">
-                <label class="control-label" for="title">Title</label>
-                <input value="{{onePost.name}}" type="text" name="title" class="form-control" ng-model="onePost.title" ng-required="true" id="title" ng-minlength="3" ng-maxlength="50">
-                <p ng-show="editForm.title.$error.minlength" class="help-block">title is too short.</p>
-                <p ng-show="editForm.title.$error.maxlength" class="help-block">title is too long.</p>
+                    <div class="form-group" ng-class="{ 'has-error' : editForm.title.$invalid && !editForm.title.$pristine ,'has-success' : editForm.title.$valid }">
+                        <label class="control-label" for="title">Title</label>
+                        <input value="{{onePost.name}}" type="text" name="title" class="form-control" ng-model="onePost.title" ng-required="true" id="title" ng-minlength="3" ng-maxlength="50">
+                        <p ng-show="editForm.title.$error.minlength" class="help-block">title is too short.</p>
+                        <p ng-show="editForm.title.$error.maxlength" class="help-block">title is too long.</p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : editForm.author.$invalid && !editForm.author.$pristine ,'has-success' : editForm.author.$valid }">
+                        <label class="control-label" for="author">By</label>
+                        <input value="{{onePost.author}}" type="text" name="author" class="form-control" ng-model="onePost.author" id="author" ng-minlength="3" ng-maxlength="12" ng-required="true">
+                        <p ng-show="editForm.author.$error.minlength" class="help-block">author is too short.</p>
+                        <p ng-show="editForm.author.$error.maxlength" class="help-block">author is too long.</p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : editForm.post.$invalid&& !editForm.post.$pristine ,'has-success' : editForm.post.$valid }">
+                        <label class="control-label" for="email">Post: </label>
+                        <input value="{{onePost.post}}" type=t ype="text" id="post" name="post" class="form-control" ng-required="true" ng-model="onePost.post">
+                        <p ng-show="editForm.post.$invalid && !editForm.post.$pristine" class="help-block">Enter a valid post.</p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : editForm.image.$invalid && !editForm.image.$pristine ,'has-success' : editForm.image.$valid }">
+                        <label class="control-label" for="image">Image</label>
+                        <input value="{{onePost.image}}" type="url" id="image" name="image" class="form-control" ng-required="true" ng-model="onePost.image">
+                        <p ng-show="editForm.image.$invalid && !editForm.image.$pristine" class="help-block">Enter a url.</p>
+                    </div>
+
+                    <input type="submit" ng-click="showForm=true">
+                </form>
+                <div class="container fluid">
+                    <!-- <a href="" ng-click= "showCommentForm = !showCommentForm"><span class="glyphicon glyphicon-comment">comment</span></a>
+            <ng-pluralize count="post.comments.length" when="{'0': '0 comments', '1': '1 comment', 'other':'{{post.comments.length}}  comments'}"></ng-pluralize> -->
+                    <form name="commentForm" ng-submit="submitComment(comment)" $novalidate>
+                        <div class="form-group" ng-class="{ 'has-error' : commetForm.comment.$invalid && !commetForm.comment.$pristine ,'has-success' : commetForm.comment.$valid }">
+                            <div class="col-xs-7 col-xs-offset-3">
+                                <label class="control-label" for="email">Comment: </label>
+                                <input type="text" id="comment" name="comment" class="form-control" ng-required="true" ng-model="comment.comment">
+                                <p ng-show="commetForm.comment.$invalid && !commetForm.comment.$pristine" class="help-block">Enter a valid comment.</p>
+                                <br>
+                                <input type="submit" ng-click="showCommentForm=false">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="form-group" ng-class="{ 'has-error' : editForm.author.$invalid && !editForm.author.$pristine ,'has-success' : editForm.author.$valid }">
-                <label class="control-label" for="author">By</label>
-                <input value="{{onePost.author}}" type="text" name="author" class="form-control" ng-model="onePost.author" id="author" ng-minlength="3" ng-maxlength="12" ng-required="true">
-                <p ng-show="editForm.author.$error.minlength" class="help-block">author is too short.</p>
-                <p ng-show="editForm.author.$error.maxlength" class="help-block">author is too long.</p>
-            </div>
-
-            <div class="form-group" ng-class="{ 'has-error' : editForm.post.$invalid && !editForm.post.$pristine ,'has-success' : editForm.post.$valid }">
-                <label class="control-label" for="email">Post: </label>
-                <input value="{{onePost.post}}" type=t ype="text" id="post" name="post" class="form-control" ng-required="true" ng-model="onePost.post">
-                <p ng-show="editForm.post.$invalid && !editForm.post.$pristine" class="help-block">Enter a valid post.</p>
-            </div>
-
-            <div class="form-group" ng-class="{ 'has-error' : editForm.image.$invalid && !editForm.image.$pristine ,'has-success' : editForm.image.$valid }">
-                <label class="control-label" for="image">Image</label>
-                <input value="{{onePost.image}}" type="url" id="image" name="image" class="form-control" ng-required="true" ng-model="onePost.image">
-                <p ng-show="editForm.image.$invalid && !editForm.image.$pristine" class="help-block">Enter a url.</p>
-            </div>
-
-            <input type="submit" ng-click="showForm=false">
-        </form>
-    </div>

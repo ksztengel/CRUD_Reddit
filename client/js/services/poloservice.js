@@ -21,6 +21,13 @@ app.service('PoloService', function($http) {
 
         delete: function(id) {
             return $http.delete(`/api/allposts/${id}`);
+        },
+
+        allComments: function(id) {
+            return $http.get(`/api/allposts/onepost/${id}`);
+        },
+        comment: function(newComment) {
+            return $http.post(`/api/allposts/${post.id}`, newComment);
         }
 
     }
