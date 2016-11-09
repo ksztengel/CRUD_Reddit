@@ -5,6 +5,7 @@ exports.seed = function(knex, Promise) {
             return Promise.all([
                 // Inserts seed entries
                 knex('posts').insert({
+                  users_id: 1,
                   title: 'The History of Polo',
                   image: 'http://images.china.cn/attachement/jpg/site1004/20080824/00080286e07a0a1b099541.jpg',
                   author: "Anonymous",
@@ -12,6 +13,7 @@ exports.seed = function(knex, Promise) {
                   votes: 0
                 }),
                 knex('posts').insert({
+                  users_id: 2,
                   title: 'High Goal Polo',
                   image: 'http://ryanpemblepolo.com/wp-content/uploads/2016/01/2015FinalHurlingham.jpg',
                   author: "Guards Polo Staff",
@@ -19,6 +21,7 @@ exports.seed = function(knex, Promise) {
                   votes: 0
                 }),
                 knex('posts').insert({
+                  users_id: 3,
                   title: 'The Athletes',
                   image: 'http://www.lospingosdeltaita.com/images/padrillos/1425323201_big.jpg',
                   author: "Polo Museum Staff",

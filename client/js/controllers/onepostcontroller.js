@@ -1,6 +1,7 @@
 'use strict'
-app.controller('OnePostController', function($scope, PoloService, $routeParams, $location) {
+app.controller('OnePostController', function($scope, $cookies,PoloService, $routeParams, $location, $rootScope) {
 
+      $cookies.get('login')
 
     var id = $routeParams.id
     PoloService.one(id).then(results => {
@@ -26,10 +27,12 @@ app.controller('OnePostController', function($scope, PoloService, $routeParams, 
     $scope.view = {}
     PoloService.allComments(id).then(comments => {
         $scope.comments = comments.data
-        console.log("data", comments.data);
 
     })
-
+if (!$cookies.get('login')){
+  $scope.error = "You must be logged in to commnet!"
+}
+else{
     $scope.submitComment = function() {
       console.log($scope.onePost.id);
       console.log($scope.comment);
@@ -39,8 +42,8 @@ app.controller('OnePostController', function($scope, PoloService, $routeParams, 
             $scope.comments.push($scope.comment),
                 $scope.comment = {},
                 $scope.commentForm.$setPristine()
-                // $location.url('/')
 
         })
     }
+  }
 })

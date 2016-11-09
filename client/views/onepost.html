@@ -22,13 +22,13 @@
                             <a ng-click="showEditForm = !showEditForm">EDIT</a>
                             <a ng-click="someFunction(onePost.id)">DELETE</a>
                             <div ng-repeat="comment in comments"><p> {{comment.comment}}</div>
-                </ul>
+                      </ul>
                 </div>
                 </div>
             </div>
             <div class="container-fluid">
+              <p class='error'>{{error}}</p>
                 <form ng-show="showEditForm" name="editForm" ng-submit="submitEdit(onePost)" $novalidate>
-
                     <div class="form-group" ng-class="{ 'has-error' : editForm.title.$invalid && !editForm.title.$pristine ,'has-success' : editForm.title.$valid }">
                         <label class="control-label" for="title">Title</label>
                         <input value="{{onePost.name}}" type="text" name="title" class="form-control" ng-model="onePost.title" ng-required="true" id="title" ng-minlength="3" ng-maxlength="50">

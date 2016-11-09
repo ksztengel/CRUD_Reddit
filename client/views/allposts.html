@@ -1,8 +1,10 @@
 <h1>Polo Posts</h1>
 <!-- <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset"> -->
     <!-- </div> -->
-<!-- <div class="container-fluid"> -->
+<div class="container-fluid">
+
     <form ng-show="showForm" name="postForm" ng-submit="submitNew(newPost)" $novalidate>
+      <p class='error'>{{error}}</p>
         <div class="form-group" ng-class="{ 'has-error' : postForm.name.$invalid && !userForm.username.$pristine ,'has-success' : postForm.name.$valid }">
           <br>
             <label class="control-label" for="title">Title:</label>
@@ -10,12 +12,12 @@
             <p ng-show="postForm.title.$error.minlength" class="help-block">title is too short.</p>
             <p ng-show="postForm.title.$error.maxlength" class="help-block">title is too long.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
+        <!-- <div class="form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
             <label class="control-label" for="author">By:</label>
             <input type="text" name="author" class="form-control" ng-model="post.author" id="author" ng-minlength="3" ng-maxlength="12" ng-required="true">
             <p ng-show="postForm.author.$error.minlength" class="help-block">author is too short.</p>
             <p ng-show="postForm.author.$error.maxlength" class="help-block">author is too long.</p>
-        </div>
+        </div> -->
 
         <div class="form-group" ng-class="{ 'has-error' : postForm.post.$invalid && !postForm.post.$pristine ,'has-success' : postForm.post.$valid }">
             <label class="control-label" for="post">Post:</label>
@@ -42,7 +44,7 @@
                         <a href="/#/onepost/{{post.id}}">
                             <h2>{{post.title}}</h2></a>
                         <br>
-                        <p><strong>By:</strong> {{post.author}}</p>
+                        <p><strong>By:</strong> {{post.username}}</p>
                         <div><p><strong>Date:</strong> {{post.created_at | date}}</p>
                         <a href="" ng-click="upVote(post)"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></a></span>
                         <a href="" ng-click="downVote(post)"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></a></span>
@@ -64,13 +66,11 @@
                             <input type="submit" ng-click="showForm=false">
                         </div>
                       </div>
-
                     </form>
                   </div>
-                  </div>
-
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-</div>
-</div>
-<!-- </div> -->
+      </div>

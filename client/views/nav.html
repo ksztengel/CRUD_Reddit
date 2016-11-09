@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid-nav">
+        <div class="navbar-header">
+            <a href="#/" class="navbar-brand navbar-left">Polo Reddit</a>
+            <button type="button" class="btn btn-default navbar-btn" ng-click="showForm = !showForm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Post
+            </button>
+            <input type="text" class="searchBox" placeholder="Search" ng-model="searching">
+            <label>Sort By</label>
+            <select name="single-Select" ng-model="sort">
+                <option value="-votes">votes</option>
+                <option value="title">title</option>
+                <option value="-date">date</option>
+            </select>
+        </div>
+    </div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a ng-click="hideSearch()" href="#/signup">Signup or login.</a>
+        </li>
+        <li>
+            <a ng-click="logout()" href="">Logout</a>
+        </li>
+</nav>
