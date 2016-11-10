@@ -16,13 +16,21 @@ app.service('UserService', function($http, $location, $cookies, $rootScope) {
         login: function(userObj) {
             return $http.post('/userapi/login', userObj)
                 .then(function(response) {
-                    $cookies.putObject('login', response)
-
-                })
+                  if (response.data.badPassword) {
+                      console.log('response from serivice', response);
+                      $rootScope.badPassword = response.data.badPassword;
+                }
+                else{
+                  console.log('response from serivice', response);
+                  $cookies.putObject('login', response)
+                  $location.url('/')
+                }
+              })
         },
         logout: function() {
             $cookies.remove('login')
-            $location.url('/')
+            // $rootScope.loggedInUser = {}
+            $location.url('/signup')
         }
 
     }

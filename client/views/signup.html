@@ -1,6 +1,8 @@
 <div class="row">
     <div id="signup" class="col-xs-6 col-xs-offset-3">
-        <p class="error">{{userExists}}</p>
+        <h4 class="error">{{userExists}}</h4>
+        <h4 class="error">{{badPassword}}</h4>
+
         <form name="authForm">
             <h3>Signup or Login</h3>
             <div ng-class="{'has-error':authForm.email.$invalid && authForm.email.$dirty, 'has-success': authForm.email.$valid}" class="form-group">

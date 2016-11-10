@@ -44,7 +44,10 @@ router.post('/login', function(req, res, next) {
                     res.json(results);
                 } else {
                     console.log('wrong password');
-                    const error = "Username or password is wrong."
+                    const error = {
+                        badPassword: "Wrong username or password"
+                    }
+                    res.json(error)
                 }
             }
         })

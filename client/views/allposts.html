@@ -4,7 +4,7 @@
 <div class="container-fluid">
 
     <form ng-show="showForm" name="postForm" ng-submit="submitNew(newPost)" $novalidate>
-      <p class='error'>{{error}}</p>
+      <h4 class='error'>{{error}}</h4>
         <div class="form-group" ng-class="{ 'has-error' : postForm.name.$invalid && !userForm.username.$pristine ,'has-success' : postForm.name.$valid }">
           <br>
             <label class="control-label" for="title">Title:</label>

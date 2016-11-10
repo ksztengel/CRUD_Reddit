@@ -30,7 +30,7 @@ app.controller('OnePostController', function($scope, $cookies,PoloService, $rout
 
     })
 if (!$cookies.get('login')){
-  $scope.error = "You must be logged in to commnet!"
+  $scope.error = "You must be logged in to commentt!"
 }
 else{
     $scope.submitComment = function() {
