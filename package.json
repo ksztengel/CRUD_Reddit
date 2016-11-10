@@ -4,12 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "scripts": {
 	  "knex": "knex",
 	  "heroku-postbuild": "knex migrate:latest",
 	  "nodemon": "nodemon app.js"
-	}
-
   },
   "engines": {
     "node": "6.3.1"
