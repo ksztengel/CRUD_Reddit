@@ -6,7 +6,7 @@ module.exports = {
     client: 'pg',
     connection: 'postgres://localhost/reddit',
     migrations: {
-        directory: `./server/dbmigrations`,
+        directory: `./server/db/migrations`,
       },
       seeds: {
         directory: `./server/db/seeds`,
