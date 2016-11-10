@@ -21,13 +21,14 @@
 
                             <a ng-click="showEditForm = !showEditForm">EDIT</a>
                             <a ng-click="someFunction(onePost.id)">DELETE</a>
-                            <div ng-repeat="comment in comments"><p> {{comment.comment}}</div>
-                      </ul>
+                            <div ng-repeat="comment in comments">
+                                <p> {{comment.comment}}</div>
+                </ul>
                 </div>
                 </div>
             </div>
             <div class="container-fluid">
-              <p class='error'>{{error}}</p>
+                <p class='error'>{{error}}</p>
                 <form ng-show="showEditForm" name="editForm" ng-submit="submitEdit(onePost)" $novalidate>
                     <div class="form-group" ng-class="{ 'has-error' : editForm.title.$invalid && !editForm.title.$pristine ,'has-success' : editForm.title.$valid }">
                         <label class="control-label" for="title">Title</label>
@@ -58,8 +59,6 @@
                     <input type="submit" ng-click="showForm=true">
                 </form>
                 <div class="container fluid">
-                    <!-- <a href="" ng-click= "showCommentForm = !showCommentForm"><span class="glyphicon glyphicon-comment">comment</span></a>
-            <ng-pluralize count="post.comments.length" when="{'0': '0 comments', '1': '1 comment', 'other':'{{post.comments.length}}  comments'}"></ng-pluralize> -->
                     <form name="commentForm" ng-submit="submitComment(comment)" $novalidate>
                         <div class="form-group" ng-class="{ 'has-error' : commetForm.comment.$invalid && !commetForm.comment.$pristine ,'has-success' : commetForm.comment.$valid }">
                             <div class="col-xs-7 col-xs-offset-3">

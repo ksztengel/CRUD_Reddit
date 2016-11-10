@@ -1,7 +1,7 @@
 'use strict'
-app.controller('OnePostController', function($scope, $cookies,PoloService, $routeParams, $location, $rootScope) {
+app.controller('OnePostController', function($scope, $cookies, PoloService, $routeParams, $location, $rootScope) {
 
-      $cookies.get('login')
+    $cookies.get('login')
 
     var id = $routeParams.id
     PoloService.one(id).then(results => {
@@ -9,21 +9,26 @@ app.controller('OnePostController', function($scope, $cookies,PoloService, $rout
 
     })
 
-      //need userId to compare to cookie.id
     $scope.someFunction = function(id) {
-        PoloService.delete(id).then(results => {
-            $location.url('/')
-
-        })
+        if ($rootScope.loggedInUser.id == $scope.onePost.users_id) {
+            PoloService.delete(id).then(results => {
+                $location.url('/')
+            })
+        } else {
+            return $scope.error = "You are not the author of the post!"
+        }
     }
 
-      //need userId to compare to cookie.id
     $scope.submitEdit = function() {
-        const editPost = $scope.onePost
-        PoloService.edit(editPost).then(results => {
-            $location.url('/')
+        if ($rootScope.loggedInUser.id == post.users_id) {
+            const editPost = $scope.onePost
+            PoloService.edit(editPost).then(results => {
+                $location.url('/')
+            })
 
-        })
+        } else {
+            return $scope.error = "You are not the author of the post!"
+        }
     }
 
     $scope.view = {}
@@ -32,23 +37,22 @@ app.controller('OnePostController', function($scope, $cookies,PoloService, $rout
 
     })
 
-    //not editing and deleting comments yet 
-if (!$cookies.get('login')){
-  $scope.error = "You must be logged in to commentt!"
-}
-else{
-    $scope.submitComment = function() {
-      console.log($scope.onePost.id);
-      console.log($scope.comment);
-        $scope.comment.posts_id = $scope.onePost.id
-        //same for users_d = cookies.id
-        PoloService.comment($scope.comment).then(newComment => {
-            $scope.comments.push($scope.comment),
-                $scope.comment = {},
-                $scope.commentForm.$setPristine()
+    //not editing and deleting comments yet
+    if (!$cookies.get('login')) {
+        $scope.error = "You must be logged in to comment!"
+    } else {
+        $scope.submitComment = function() {
+            console.log($scope.onePost.id);
+            console.log($scope.comment);
+            $scope.comment.posts_id = $scope.onePost.id
+                //same for users_d = cookies.id
+            PoloService.comment($scope.comment).then(newComment => {
+                $scope.comments.push($scope.comment),
+                    $scope.comment = {},
+                    $scope.commentForm.$setPristine()
 
-        })
+            })
+        }
     }
-  }
 
 })

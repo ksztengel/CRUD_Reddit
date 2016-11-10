@@ -1,20 +1,18 @@
 app.controller('AuthController', function($scope, $cookies, UserService, $location) {
 
 
-  $scope.userObj = {}
+    $scope.userObj = {}
 
-  $scope.signup = function(obj) {
-    console.log("form", obj);
-    UserService.signup(obj).then(function(response) {
-        console.log("response", response);
+    $scope.signup = function(obj) {
+        UserService.signup(obj).then(function(response) {
 
-    })
-  }
+        })
+    }
 
-  $scope.login = function(obj) {
-    UserService.login(obj).then(function(response) {
-  
-    })
-  }
+    $scope.login = function(obj) {
+        UserService.login(obj).then(function(response) {
+
+        })
+    }
 
 })

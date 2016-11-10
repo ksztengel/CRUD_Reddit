@@ -13,21 +13,24 @@ app.controller('AllController', function($scope, $cookies, PoloService, $locatio
         if ($cookies.getObject('login')) {
             console.log('yes there are cookies');
             $scope.cookies = $cookies.getObject('login')
-            // console.log($scope.cookies);
+                // console.log($scope.cookies);
             $rootScope.loggedInUser.id = $scope.cookies.data.id
+            console.log('user_id', $scope.cookies.data.id);
             $rootScope.loggedInUser.username = $scope.cookies.data.username;
         } else {
-
+            $rootScope.loggedInUser = {}
         }
     }
 
     $rootScope.checkCookies()
 
+
     if (!$cookies.getObject('login')) {
         $scope.error = "You must be logged in to post!"
     } else {
         $scope.submitNew = function() {
-            $scope.users.id = loggedInUser.id
+            $scope.post.users_id = $rootScope.loggedInUser.id
+            console.log("id", $rootScope.loggedInUser.id);
             PoloService.new($scope.post).then(newPost => {
                 $scope.posts.push($scope.post),
                     $scope.post = {},
@@ -37,10 +40,10 @@ app.controller('AllController', function($scope, $cookies, PoloService, $locatio
             })
         }
     }
+
     $scope.upVote = function(post) {
         post.votes += 1
         PoloService.edit(post, function() {})
-        console.log("post", post);
 
     }
 

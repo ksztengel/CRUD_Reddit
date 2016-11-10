@@ -18,7 +18,6 @@ router.get('/', (req, res, next) => {
                             post.id == comment.posts_id ? post.comments.push(comment) : null;
                         })
                     })
-                    // console.log('posts with comments', posts);
                     res.json(posts)
                 })
         })
@@ -33,6 +32,7 @@ router.get('/:id', function(req, res) {
         })
 });
 router.post('/', (req, res, next) => {
+    console.log("req.body", req.body);
     knex('posts')
         .insert(req.body)
         .then((post) => {
@@ -46,10 +46,11 @@ router.put('/:id', (req, res, next) => {
     knex('posts')
         .where('id', req.params.id)
         .update({
-          title: req.body.title,
-          author: req.body.author,
-          post: req.body.post,
-          votes: req.body.votes
+            title: req.body.title,
+            author: req.body.author,
+            post: req.body.post,
+            votes: req.body.votes,
+            image: req.body.image
         })
         .then((post) => {
             //send data to client
@@ -62,11 +63,10 @@ router.delete('/:id', (req, res, next) => {
             .where('id', req.params.id)
             .delete()
             .then(() => {
-                //back to bucaneers
                 res.json('Post is Deleted!')
             })
     })
-    ///posts/post.id/comments
+    //posts/post.id/comments
 router.get('/onepost/:id', (req, res, next) => {
     knex('comments')
         .where("posts_id", req.params.id)
@@ -78,8 +78,6 @@ router.get('/onepost/:id', (req, res, next) => {
 });
 
 router.post('/:id', (req, res, next) => {
-    // let id = req.params.id
-    // console.log("body",req.body);
     knex('comments')
         .insert(req.body)
         .then((comment) => {

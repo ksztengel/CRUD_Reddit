@@ -41,7 +41,7 @@ router.post('/login', function(req, res, next) {
             } else {
                 let isValid = bcrypt.compareSync(req.body.password, results[0].hashed_password)
                 if (isValid) {
-                    res.json(results);
+                    res.json(results[0]);
                 } else {
                     console.log('wrong password');
                     const error = {

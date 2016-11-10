@@ -1,23 +1,22 @@
 <h1>Polo Posts</h1>
-<!-- <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset"> -->
-    <!-- </div> -->
+
 <div class="container-fluid">
 
     <form ng-show="showForm" name="postForm" ng-submit="submitNew(newPost)" $novalidate>
-      <h4 class='error'>{{error}}</h4>
+        <h4 class='error'>{{error}}</h4>
         <div class="form-group" ng-class="{ 'has-error' : postForm.name.$invalid && !userForm.username.$pristine ,'has-success' : postForm.name.$valid }">
-          <br>
+            <br>
             <label class="control-label" for="title">Title:</label>
             <input autofocus type="text" name="title" class="form-control" ng-model="post.title" ng-required="true" id="title" ng-minlength="3" ng-maxlength="12">
             <p ng-show="postForm.title.$error.minlength" class="help-block">title is too short.</p>
             <p ng-show="postForm.title.$error.maxlength" class="help-block">title is too long.</p>
         </div>
-        <!-- <div class="form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
+        <div class="form-group" ng-class="{ 'has-error' : postForm.author.$invalid && !postForm.author.$pristine ,'has-success' : postForm.author.$valid }">
             <label class="control-label" for="author">By:</label>
             <input type="text" name="author" class="form-control" ng-model="post.author" id="author" ng-minlength="3" ng-maxlength="12" ng-required="true">
             <p ng-show="postForm.author.$error.minlength" class="help-block">author is too short.</p>
             <p ng-show="postForm.author.$error.maxlength" class="help-block">author is too long.</p>
-        </div> -->
+        </div>
 
         <div class="form-group" ng-class="{ 'has-error' : postForm.post.$invalid && !postForm.post.$pristine ,'has-success' : postForm.post.$valid }">
             <label class="control-label" for="post">Post:</label>
@@ -44,33 +43,34 @@
                         <a href="/#/onepost/{{post.id}}">
                             <h2>{{post.title}}</h2></a>
                         <br>
-                        <p><strong>By:</strong> {{post.username}}</p>
-                        <div><p><strong>Date:</strong> {{post.created_at | date}}</p>
-                        <a href="" ng-click="upVote(post)"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></a></span>
-                        <a href="" ng-click="downVote(post)"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></a></span>
-                        <span ng-class="{redVote: post.votes < 0, greenVote: post.votes >0, zero: post.votes == 0}">{{post.votes}}</span>
+                        <p><strong>By:</strong> {{post.author}}</p>
+                        <div>
+                            <p><strong>Date:</strong> {{post.created_at | date}}</p>
+                            <a href="" ng-click="upVote(post)"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></a></span>
+                            <a href="" ng-click="downVote(post)"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></a></span>
+                            <span ng-class="{redVote: post.votes < 0, greenVote: post.votes >0, zero: post.votes == 0}">{{post.votes}}</span>
 
-                        <br>
-                        <p><strong>Post:</strong> {{post.post}}</p>
-                      </div>
+                            <br>
+                            <p><strong>Post:</strong> {{post.post}}</p>
+                        </div>
                         <div class="container fluid">
                             <a href="/#/onepost/{{post.id}}"><span class="glyphicon glyphicon-comment"></span></a>
                             <ng-pluralize count="post.comments.length" when="{'0': '0 comments', '1': '1 comment', 'other':'{{post.comments.length}}  comments'}"></ng-pluralize>
-                          <form ng-show="showCommentForm" name="commentForm" ng-submit="submitComment(onePost)" $novalidate>
-                        <div class="form-group" ng-class="{ 'has-error' : commetForm.comment.$invalid && !commetForm.comment.$pristine ,'has-success' : commetForm.comment.$valid }">
-                          <div class="col-xs-7">
-                            <label class="control-label" for="email">Comment: </label>
-                            <input value="{{onePost.comment}}" type=t ype="text" id="comment" name="comment" class="form-control" ng-required="true" ng-model="onePost.comment">
-                            <p ng-show="commetForm.comment.$invalid && !commetForm.comment.$pristine" class="help-block">Enter a valid comment.</p>
-                            <br>
-                            <input type="submit" ng-click="showForm=false">
+                            <form ng-show="showCommentForm" name="commentForm" ng-submit="submitComment(onePost)" $novalidate>
+                                <div class="form-group" ng-class="{ 'has-error' : commetForm.comment.$invalid && !commetForm.comment.$pristine ,'has-success' : commetForm.comment.$valid }">
+                                    <div class="col-xs-7">
+                                        <label class="control-label" for="email">Comment: </label>
+                                        <input value="{{onePost.comment}}" type=t ype="text" id="comment" name="comment" class="form-control" ng-required="true" ng-model="onePost.comment">
+                                        <p ng-show="commetForm.comment.$invalid && !commetForm.comment.$pristine" class="help-block">Enter a valid comment.</p>
+                                        <br>
+                                        <input type="submit" ng-click="showForm=false">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                      </div>
-                    </form>
-                  </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>

@@ -1,40 +1,32 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
-
-.image{
- height: auto;
- width: 300px;
-
+.image {
+    height: auto;
+    width: 300px;
 }
-
 .greenVote {
     color: green;
-    font-weight:bold;
+    font-weight: bold;
 }
 .redVote {
     color: red;
-    font-weight:bold;
+    font-weight: bold;
 }
-
-.zero{
+.zero {
     color: black;
-
 }
 .ng-enter {
-  animation: fadeInRight .015s;
+    animation: fadeInRight .015s;
 }
-
 .ng-leave {
-  animation: fadeOutRight .015s;
+    animation: fadeOutRight .015s;
 }
-
-.error{
-  color:red;
-  font-weight: bold;
+.error {
+    color: red;
+    font-weight: bold;
 }
