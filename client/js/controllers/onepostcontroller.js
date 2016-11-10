@@ -9,6 +9,7 @@ app.controller('OnePostController', function($scope, $cookies,PoloService, $rout
 
     })
 
+      //need userId to compare to cookie.id
     $scope.someFunction = function(id) {
         PoloService.delete(id).then(results => {
             $location.url('/')
@@ -16,6 +17,7 @@ app.controller('OnePostController', function($scope, $cookies,PoloService, $rout
         })
     }
 
+      //need userId to compare to cookie.id
     $scope.submitEdit = function() {
         const editPost = $scope.onePost
         PoloService.edit(editPost).then(results => {
@@ -29,6 +31,8 @@ app.controller('OnePostController', function($scope, $cookies,PoloService, $rout
         $scope.comments = comments.data
 
     })
+
+    //not editing and deleting comments yet 
 if (!$cookies.get('login')){
   $scope.error = "You must be logged in to commentt!"
 }
@@ -46,4 +50,5 @@ else{
         })
     }
   }
+
 })

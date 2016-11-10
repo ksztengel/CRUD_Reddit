@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
                             post.id == comment.posts_id ? post.comments.push(comment) : null;
                         })
                     })
-                    console.log('posts with comments', posts);
+                    // console.log('posts with comments', posts);
                     res.json(posts)
                 })
         })
@@ -38,13 +38,19 @@ router.post('/', (req, res, next) => {
         .then((post) => {
             //send data to client
             res.json(post)
+
         })
 })
 
 router.put('/:id', (req, res, next) => {
     knex('posts')
         .where('id', req.params.id)
-        .update(req.body)
+        .update({
+          title: req.body.title,
+          author: req.body.author,
+          post: req.body.post,
+          votes: req.body.votes
+        })
         .then((post) => {
             //send data to client
             res.json(post)
